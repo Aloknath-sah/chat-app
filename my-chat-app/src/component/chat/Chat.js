@@ -5,6 +5,7 @@ import "./Chat.css";
 import sendLogo from '../../images/send.png';
 import Message from '../Message/Message';
 import ReactScrollToBottom from "react-scroll-to-bottom";
+import closeIcon from '../../images/closeIcon.png';
 
 let socket;
 
@@ -26,7 +27,6 @@ const Chat = () => {
     socket = socketIo(ENDPOINT, { transports: ['websocket']} );
     
     socket.on('connect', () => {
-        alert("connected");
         setid(socket.id);
     })
 
@@ -67,7 +67,10 @@ const Chat = () => {
   return (
     <div className='chatPage'>
         <div className='chatContainer'>
-            <div className='header'></div>
+            <div className='header'>
+              <h2>W Chat</h2>
+              <a href='/'><img src={closeIcon} alt="close" /></a>
+            </div>
             <ReactScrollToBottom className='chatBox'>
               {messages.map((item, i) => <Message user4={item.id === id? '' : item.user} message={item.message} classs={item.id === id? 'right' : 'left'} />)}
             </ReactScrollToBottom>

@@ -16,10 +16,22 @@
 .header {
     background-color: crimson;
     height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
+.header > h2 {
+    color: white;
+    margin: 2.5vmax;
+}
+
+.header img {
+    margin: 2.5vmax;
+}
+
+
 .chatBox {
-    border: 0.2vmax solid black;
     height: 70%;
     box-sizing: border-box;
 }
@@ -37,6 +49,7 @@
     background-color: white;
     box-sizing: border-box;
     outline: none;
+    border-top: 0.2vmax solid rgb(90, 88, 88);
 }
 
 .sendBtn {
