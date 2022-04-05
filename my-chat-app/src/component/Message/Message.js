@@ -1,11 +1,12 @@
 import React from 'react';
 import './Message.css';
 
-const Message = ({user, message, classs}) => {
-    if(user) {
+const Message = ({user4, message, classs}) => {
+    console.log(classs)
+    if(user4) {
         return (
           <div className={`messageBox ${classs}`}>
-              {`${user}: ${message}`}
+              {`${user4}: ${message}`}
           </div>
         )
     }

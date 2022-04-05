@@ -6,12 +6,13 @@ import sendLogo from '../../images/send.png';
 import Message from '../Message/Message';
 import ReactScrollToBottom from "react-scroll-to-bottom";
 
-const ENDPOINT = "http://localhost:4500/";
 let socket;
+
+const ENDPOINT = "http://localhost:4500/";
 
 const Chat = () => {
   const [id, setid] = useState("");
-  const [messages, setmessages] = useState([1,2,3,4,9,5,67,7,68])
+  const [messages, setmessages] = useState([])
 
   const send = () => {
     const message = document.getElementById('chatInput').value;
@@ -19,8 +20,11 @@ const Chat = () => {
     document.getElementById('chatInput').value = "";
   }
 
+  console.log(messages)
+
   useEffect(() => {
     socket = socketIo(ENDPOINT, { transports: ['websocket']} );
+    
     socket.on('connect', () => {
         alert("connected");
         setid(socket.id);
@@ -29,14 +33,16 @@ const Chat = () => {
     socket.emit('joined', {user})
 
     socket.on('welcome', (data) => {
-      console.log(data.user, data.message)
+      setmessages([...messages, data])
     })
 
     socket.on('userJoined', (data) => {
+      setmessages([...messages, data])
       console.log(data.user, data.message)
     })
 
     socket.on('leave', (data) => {
+      setmessages([...messages, data])
       console.log(data.user, data.message)
     })
   
@@ -48,13 +54,14 @@ const Chat = () => {
 
   useEffect(() => {
     socket.on('sendMessage', (data) => {
-      console.log(data.user, data.message)
+      setmessages([...messages, data])
+      console.log(data.user, data.message, data.id)
     });
   
     return () => {
-      
+      socket.off();
     }
-  }, [])
+  }, [messages])
   
   
   return (
@@ -62,7 +69,7 @@ const Chat = () => {
         <div className='chatContainer'>
             <div className='header'></div>
             <ReactScrollToBottom className='chatBox'>
-              {messages.map((item, i) => <Message message={item} />)}
+              {messages.map((item, i) => <Message user4={item.id === id? '' : item.user} message={item.message} classs={item.id === id? 'right' : 'left'} />)}
             </ReactScrollToBottom>
             <div className='inputBox'>
                 <input type="text" id="chatInput" />

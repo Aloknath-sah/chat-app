@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
     })
 
     socket.on('message', ({message, id}) => {
-        io.emit('sendMessage', {user:users1[id], message})
+        io.emit('sendMessage', {user:users1[id], message, id})
     })
 
     socket.on('disconnect1', () => {
