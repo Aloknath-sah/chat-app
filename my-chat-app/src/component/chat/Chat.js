@@ -3,12 +3,15 @@ import { user } from '../Join/Join';
 import socketIo from 'socket.io-client';
 import "./Chat.css";
 import sendLogo from '../../images/send.png';
+import Message from '../Message/Message';
+import ReactScrollToBottom from "react-scroll-to-bottom";
 
 const ENDPOINT = "http://localhost:4500/";
 let socket;
 
 const Chat = () => {
   const [id, setid] = useState("");
+  const [messages, setmessages] = useState([1,2,3,4,9,5,67,7,68])
 
   const send = () => {
     const message = document.getElementById('chatInput').value;
@@ -58,7 +61,9 @@ const Chat = () => {
     <div className='chatPage'>
         <div className='chatContainer'>
             <div className='header'></div>
-            <div className='chatBox'></div>
+            <ReactScrollToBottom className='chatBox'>
+              {messages.map((item, i) => <Message message={item} />)}
+            </ReactScrollToBottom>
             <div className='inputBox'>
                 <input type="text" id="chatInput" />
                 <button onClick={send} className='sendBtn'>
