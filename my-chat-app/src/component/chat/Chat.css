@@ -21,10 +21,38 @@
 .chatBox {
     border: 0.2vmax solid black;
     height: 70%;
+    box-sizing: border-box;
 }
 
 .inputBox {
-    border: 0.2vmax solid black;
     height: 15%;
+    box-sizing: border-box;
+    display: flex;
 }
 
+#chatInput {
+    width: 80%;
+    border: none;
+    padding: 2vmax;
+    background-color: white;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.sendBtn {
+    background-color: crimson;
+    color: white;
+    border: none;
+    width: 20%;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.sendBtn:hover {
+    background-color: rgb(115, 13, 33);
+}
+
+.sendBtn > img {
+    width: 3vmax;
+    filter: brightness(100) invert();
+}

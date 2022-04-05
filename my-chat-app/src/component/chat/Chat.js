@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { user } from '../Join/Join';
 import socketIo from 'socket.io-client';
 import "./Chat.css";
+import sendLogo from '../../images/send.png';
 
 const ENDPOINT = "http://localhost:4500/";
 
@@ -13,11 +14,13 @@ const Chat = () => {
     socket.on('connect', () => {
         alert("connected");
     })
+
+    socket.emit('joined', {user})
   
     return () => {
       
     }
-  }, [socket])
+  }, [])
   
   return (
     <div className='chatPage'>
@@ -25,7 +28,10 @@ const Chat = () => {
             <div className='header'></div>
             <div className='chatBox'></div>
             <div className='inputBox'>
-                {user}
+                <input type="text" id="chatInput" />
+                <button className='sendBtn'>
+                    <img src={sendLogo} alt="Send" />
+                </button>
             </div>
         </div>
     </div>

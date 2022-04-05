@@ -15,8 +15,12 @@ const server = http.createServer(app);
 
 const io = socketIO(server);
 
-io.on("connection", () => {
+io.on("connection", (socket) => {
     console.log("New Connection");
+
+    socket.on("joined", (users) => {
+        console.log(users.user)
+    })
 })
 
 server.listen(port, () => {
