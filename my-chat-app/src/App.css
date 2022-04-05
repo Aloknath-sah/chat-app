@@ -44,4 +44,45 @@ body {
     transition: all 0.3s;
     cursor: pointer;
   }
+
+  .chatContainer {
+    background-color: white;
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+  .header {
+    height: 10% !important;
+  }
+
+  .header > h2 {
+    color: white;
+    margin: 6vw !important;
+  }
+
+  .header img {
+    margin: 6vw !important;
+  }
+
+  .chatBox {
+    height: 83% !important;
+    box-sizing: border-box;
+  }
+
+  .inputBox {
+    height: 7% !important;
+  }
+
+  #chatInput {
+    font-size: 4vw !important;
+    padding: 4vw !important;
+}
+
+  .messageBox {
+    width: 70% !important;
+    padding: 3vw !important;
+    margin: 3vw !important;
+    border-radius: 1.5vw !important;
+    font-size: 4vw !important;
+  }
 }

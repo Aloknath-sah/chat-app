@@ -43,6 +43,7 @@
 }
 
 #chatInput {
+    font-size: 2.2vmax;
     width: 80%;
     border: none;
     padding: 2vmax;
